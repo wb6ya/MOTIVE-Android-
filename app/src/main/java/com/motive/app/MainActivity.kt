@@ -66,8 +66,7 @@ private enum class Tab{HOME,TASKS,LIBRARY,STATS,SETTINGS}
   Page(pad){Header(if(ar)"مكتبتك" else "Your library",if(ar)"محتوى التعلم في مكان واحد." else "Your learning videos in one place.")
    Button(onClick=pick,modifier=Modifier.fillMaxWidth()){Icon(Icons.Outlined.Add,null);Text(if(ar)"استيراد فيديو" else "Import video")}
    if(videos.isEmpty()) Text(if(ar)"المكتبة فارغة." else "Library is empty.")
-   videos.forEach{v->CardBox{Row(verticalAlignment=Alignment.CenterVertically){Text(v.title,Modifier.weight(1f));IconButton(onClick={selected=v}){Icon(Icons.Outlined.PlayArrow,null)};IconButton(onClick={scope.launch{dao.deleteVideo(v)}){Icon(Icons.Outlined.Delete,null)}}}}}
-  }
+videos.forEach{v->CardBox{Row(verticalAlignment=Alignment.CenterVertically){Text(v.title,Modifier.weight(1f));IconButton(onClick={selected=v}){Icon(Icons.Outlined.PlayArrow,null)};IconButton(onClick={scope.launch{dao.deleteVideo(v)}}){Icon(Icons.Outlined.Delete,null)}}}}  }
   selected?.let{v->PlayerDialog(v){selected=null}}
  }
  Tab.STATS -> Page(pad){Header(if(ar)"الإحصائيات" else "Statistics",if(ar)"تابع تقدمك." else "Track your progress.")
